@@ -159,6 +159,11 @@ var TICALL = (function() {
         alert(Id.id);
     }
 
+    //WatchDog
+    ticall.watchDog = function() {
+        _('status').innerHTML = 'Timeout - new';
+    }
+
     //GETs / SETs ----------------------------------------------
 
     //get Enabled
@@ -170,6 +175,7 @@ var TICALL = (function() {
     return {
         create: ticall.create,
         active: ticall.active,
-        ajaxIO: ticall.ajaxIO
+        ajaxIO: ticall.ajaxIO,
+        watchDog: ticall.watchDog
     };
 })();

@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -14,7 +14,7 @@
 	<body>
 
 		<div id="container">
-
+			<div id="timer"></div>
 			<h1>Ticall</h1>
 
 			<div id="cards"></div>			
@@ -23,15 +23,27 @@
 
 			<div class="user">
 				<img src="assets/u2.jpg">
-				<img src="assets/u3.jpg">
-				<img src="assets/u1.jpg">
+			<!--	<img src="assets/u3.jpg">
+				<img src="assets/u1.jpg"> -->
 				<img src="assets/u5.jpg">
 				<img src="assets/u4.jpg">
 			</div>
+
+		<!--
+			<form id="upload_form" enctype="multipart/form-data" method="post">
+  				<input type="file" name="file1" id="file1"><br>
+  				<button onclick="return send()">Send</button>
+  			</form>
+  		-->
 		</div>
+
+
+
+		<div id="status">Status Bar:: </div>
 
 		<script src="script/lib/jquery-1.11.0.min.js"></script>
 		<script src="script/lib/prefixfree.min.js"></script>
+		<script src="script/lib/watch.class.js"></script>
 		<script src="script/lib/card.class.js"></script>
 		<script src="script/lib/ticall.class.js"></script>
 		<script src="script/main.js"></script>

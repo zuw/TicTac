@@ -17,11 +17,15 @@ class Main {
     }
 
 
-    //TODO User login
-    function login(){
-    	
-    	//TODO: build all...
-    	return (new Model\User())->getUserByName('Bill Rocha');
+    //Ajax upload
+    function upload(){
+
+        if(isset($_POST['data'])) {
+            p(json_decode($_POST['data']));
+        }
+
+        p($_POST, false);
+        p($_FILES);
 
     }
 }
