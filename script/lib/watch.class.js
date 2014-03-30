@@ -1,4 +1,4 @@
-/* Watch class 
+/* WATCH class 
  * author http://google.com/+BillRocha
  * date:  2014/03/08
  *
@@ -11,7 +11,7 @@ var WATCH = (function() {
         //Construct
         construct: function(Url, Type, Data) {
 
-            this.url = (Url) ? Url : 'http://ticall.tk/upload';
+            this.url = (Url) ? Url : CONFIG.ajax;
             this.type = (Type) ? Type : 'POST';
             this.data = (Data) ? Data : '{"teste":"este é um teste."}';
 
@@ -50,22 +50,25 @@ var WATCH = (function() {
 
             //Progresss
             this.progressHandler = function(event) {
-                //_("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-
                 var percent = (event.loaded / event.total) * 100;
-
-                //_("progressBar").value = Math.round(percent);
-
                 _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
             },
 
             //Complete
             this.completeHandler = function(event) {
-                //alert(event.target.responseText);
+                var data = false;
+                eval(event.target.responseText);
+
+                if (!data) CONTROLLER.error('nodata');
+
+                CONFIG.tic = data.tic;
+
+                //Reload cards
+                TICALL.reload();
+
+                CONTROLLER.action(data);
 
                 _("status").innerHTML = event.target.responseText;
-
-                //_("progressBar").value = 0;
             },
 
             //Error
@@ -84,9 +87,8 @@ var WATCH = (function() {
 
     var wdog = {
 
-        counter: 0,
+        counter: 20,
         display: false,
-        maxtime: 30,
         nodeTime: false,
 
         //Construct
@@ -94,10 +96,8 @@ var WATCH = (function() {
 
             this.tout = false;
             this.tcounter = false;
-            this.counter = 0;
+            this.counter = 16;
             WATCH.wdisplay = '';
-
-            //this.url = (Url) ? Url : 'http://ticall.tk/upload';
 
             //SET Timeout - wdog.set(3000) =>> 3 seconds!
             this.set = function(timeout) {
@@ -110,39 +110,47 @@ var WATCH = (function() {
             },
 
             this.init = function() {
-                this.tout = setTimeout(function() {
-                    TICALL.watchDog();
-                }, this.timeout);
+                // this.tout = setTimeout(function() {
+                //     TICALL.watchDog();
+                // }, this.timeout);
 
                 WATCH.nodeTime = setInterval(function() {
                     WATCH.timeDisplay();
                 }, 1000);
+            },
+
+            this.stop = function() {
+                window.clearInterval(WATCH.nodeTime);
             }
 
         },
 
         timeDisplay: function() {
-            this.wcounter++;
-            var dsp = _(WATCH.wdisplay);
+            this.wcounter--;
+            var color = null;
+            var back = null;
 
-            if (this.wcounter >= 10) {
-                dsp.style.background = "#890";
-                dsp.style.color = "#FFF";
-            }
-            if (this.wcounter >= 20) {
-                dsp.style.background = "#C60";
-            }
-            if (this.wcounter >= 25) {
-                dsp.style.background = "#F00";
+            if (this.wcounter <= 10) {
+                SOUND.play('tic');
+                color = "#000";
+                back = "#C90";
             }
 
-            if (this.wcounter >= this.wmaxtime) {
-                alert('PERDEU!!!');
+            if (this.wcounter <= 5) {
+                color = "#FFF";
+                back = "#F30";
+            }
+
+            if (this.wcounter <= 0) {
                 window.clearInterval(WATCH.nodeTime);
+                DISPLAY.clockHide();
+                return CONTROLLER.timeOut();
             }
-            dsp.innerHTML = this.wcounter;
+
+            return DISPLAY.clockShow(this.wcounter, color, back);
         }
     }
+
 
     //return public methods
     return {

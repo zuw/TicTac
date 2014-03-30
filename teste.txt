@@ -1,0 +1,159 @@
+stdClass Object
+(
+    [event] => card-click
+    [tic] => stdClass Object
+        (
+            [A1] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 1
+                )
+
+            [B1] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [C1] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [D1] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [E1] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [A2] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [B2] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [C2] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [D2] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [E2] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [A3] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [B3] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [C3] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [D3] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [E3] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [A4] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [B4] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [C4] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [D4] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [E4] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [A5] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [B5] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [C5] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [D5] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+            [E5] => stdClass Object
+                (
+                    [type] => 2
+                    [active] => 
+                )
+
+        )
+
+    [card] => A1
+)
