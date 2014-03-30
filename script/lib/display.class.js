@@ -1,115 +1,181 @@
-/* DISPLAY
+/* DISPLAY space
  * author http://google.com/+BillRocha
- * date:  2014/03/12
+ * date:  2014/03/08
  *
  * namespace DISPLAY
  */
 
-var DISPLAY = (function() {
+var DISPLAY = (function () {
 
-    var splash = {
+    var tictac = {
 
-        //Construct
-        construct: function() {
+        construct: function () {
 
-            this.clock
+            this.freeze = false;
+            this.card = {};
+            this.over = null;
 
-            this.show = false;
-            this.title = 'Aguarde . . .';
-            this.subtitle = '';
-            this.text = '';
-
-            //create
-            this.node = document.createElement('DIV');
-
-            //attributes                        
-            this.node.setAttribute('id', 'splash');
-            this.node.setAttribute('class', 'splash');
-            this.node.style.display = 'none';
-
-            //inserting in Html body 
-            document.body.appendChild(this.node);
-
-            this.update = function() {
-                this.node.innerHTML = '<div><h1>' + this.title + '</h1>' +
-                    '<h2>' + this.subtitle + '</h2>' +
-                    '<p>' + this.text + '</p></div>';
+            this.enable = function (on) {
+                if (typeof on != 'boolean') on = true
+                this.freeze = !on;
+                this.over.innerHTML = ' ';
+                this.over.style.display = (on) ? 'none' : 'block';
             },
 
-            //Display ---
-            this.show = function(title) {
-                if (title) {
-                    this.title = title;
-                    this.update();
-                }
-                this.node.style.display = 'block';
-            },
-            this.hide = function() {
-                this.node.style.display = 'none';
-            },
-
-            //Modifields ---------
-            this.setTitle = function(title) {
-                this.title = title;
-                this.update();
-            },
-
-            this.setSubtitle = function(sub) {
-                this.subtitle = sub;
-                this.update();
-            },
-
-            this.setText = function(text) {
-                this.text = text;
-                this.update();
+            this.notice = function (msg, title) {
+                var o = '<div>';
+                if (typeof title == 'string') o += '<h1>' + title + '</h1>';
+                if (typeof msg == 'string') o += '<p>' + msg + '</p>';
+                //alert(o);
+                this.over.innerHTML = o + '</div>';
+                this.over.style.display = 'block';
             }
 
-            this.update();
+            this.restart = function () {
+                for (i in this.card) {
+                    var type = (CONFIG.tic[i].active) ? CONFIG.tic[i].type : '';
+                    this.card[i].className = type;
+                    this.card[i].innerHTML = type;
+                }
+                this.freeze = false;
+            },
+
+            this.init = function () {
+
+                //Create TicTac div
+                this.tictac = _('tictac');
+//                this.tictac = _e('DIV', {
+//                    'id': 'tictac',
+//                    'class': 'tictac'
+//                });
+
+                //Hidded OverDisplay
+                this.over = _e('DIV', {
+                    'id': 'dspOver',
+                    'class': 'dspOver'
+                }, 'Teste');
+
+                _ap('container', this.tictac);
+                _ap('tictac', this.over);
+
+                for (i in CONFIG.tic) {
+
+                    if (CONFIG.tic[i].active) {
+                        this.card[i] = _e("DIV", {
+                            'id': i,
+                            'class': CONFIG.tic[i].type
+                        }, CONFIG.tic[i].type);
+                    } else this.card[i] = _e("DIV", i);
+
+                    _ap(this.tictac, this.card[i]); //append card
+
+                    this.card[i].addEventListener('click', function () {
+
+                        if (DISPLAY.TICTAC.freeze) return false;
+
+                        if (this.className != '') return false;
+
+                        this.className = CONFIG.tic[this.id].type;
+                        this.innerHTML = CONFIG.tic[this.id].type;
+                        CONFIG.tic[this.id].active = true;
+                        SOUND.play('click');
+
+                        return CONTROLLER.Main.clicked(this.id);
+
+                    }, false);
+                }
+                //append Clear element                
+                _ap(this.tictac, _e('p', {
+                    'class': 'clear'
+                }));
+
+            },
+            this.init();
         }
     };
 
-    var clock = {
-        node: null,
-        color: '#999',
-        background: '#444',
 
-        create: function() {
-            //create
-            this.node = document.createElement('DIV');
+    var user = {
 
-            //attributes                        
-            this.node.setAttribute('id', 'timer');
-            this.node.setAttribute('class', 'timer');
-            this.node.style.display = 'none';
+        construct: function () {
+            this.title = '';
+            this.image = '';
+            this.contents = '';
+            this.class = 'user';
 
-            //inserting in Html body 
-            document.body.appendChild(this.node);
-        },
+            this.card = [];
 
-        show: function(value, color, backcolor) {
-            if (!this.node) this.create();
-            this.node.innerHTML = value;
+            //functions -----------------------------------------------------
 
-            if (color) this.color = color;
-            if (backcolor) this.background = backcolor;
+            this.reflesh = function () {
+                _('userPicture').innerHTML = this.image;
+                _('userData').innerHTML = this.title + this.contents; // +
+            },
 
-            var style = this.node.style;
-            style.color = this.color;
-            style.background = this.background;
-            style.display = 'block';
-        },
+            this.restart = function () {
+                this.title = '<h3>' + CONFIG.gamer.name + '</h3>';
+                this.image = '<img src="' + CONFIG.gamer.image + '">';
+                this.contents = '<p><b>' + CONFIG.gamer.credits + '</b> créditos total</p>'
+                    +'<p><b>'+CONFIG.gamer.value+'</b> créditos apostados</p>';
+                this.reflesh();
+            },
 
-        hide: function() {
-            if (!this.node) this.create();
-            this.node.style.display = 'none';
+            this.setTitle = function (title) {
+                this.title = '<h3>' + title + '</h3>';
+                this.reflesh();
+            },
+
+            this.setImage = function (image) {
+                this.image = '<img src="' + image + '">';
+                this.reflesh();
+            },
+
+            this.setContents = function (contents) {
+                this.contents = contents;
+                this.reflesh();
+            }
+
+            //insert contents
+            this.restart();
         }
     };
 
-    //return public methods
+    var count = {
+
+        construct: function () {
+
+            this.id = _('timer');
+
+            this.set = function (value) {
+                this.id.innerHTML = value;
+                this.id.style.display = 'run-in';
+            },
+
+            this.clean = function () {
+                this.id.innerHTML = '0';
+                this.id.style.display = 'none';
+            },
+
+            this.setColor = function (color, back) {
+                if (!color) color = '#FFF';
+                if (!back) back = '#2A4773';
+                this.id.style.color = color;
+                this.id.style.background = back;
+            },
+
+            this.hide = function () {
+                this.id.style.display = 'none';
+            }
+
+            this.setColor();
+
+        }
+    };
+
+
     return {
-        construct: splash.construct,
-        clockShow: clock.show,
-        clockHide: clock.hide,
-        create: clock.create
-    };
+        USER: new user.construct(),
+        TICTAC: new tictac.construct(),
+        TIMER: new count.construct()
+    }
 })();

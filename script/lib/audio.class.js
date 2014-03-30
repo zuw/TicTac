@@ -34,14 +34,22 @@ var AUDIO = (function() {
                     //loading audio file
                     this.node[i].load();
                 } else {
-                    CONTROLLER.error("Your browser doesn't support HTML5 audio unfortunately.");
+                    Main.error("Your browser doesn't support HTML5 audio unfortunately.");
                 }
             }
 
-            this.play = function(sound) {
+            this.play = function(sound, volume) {
+                if(!volume || volume > 100) volume = 1;
+                else {
+                    volume = volume /100;
+                }
+                
                 if (!this.active) return false;
                 if (this.node[sound]) {
-                    this.node[sound].pause();
+                    //this.node[sound].load();
+                    this.node[sound].volume = volume;
+                    //this.node[sound].pause();
+                    this.node[sound].ended = true;
                     this.node[sound].play();
                 }
             },
@@ -68,6 +76,8 @@ var AUDIO = (function() {
 
     //return public methods
     return {
-        construct: sound.construct
+        Player: new sound.construct()
     };
 })();
+//simplified NODE for Sound: SOUND.play(); [etc]
+var SOUND = AUDIO.Player;

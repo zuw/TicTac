@@ -1,0 +1,8 @@
+.login { position: absolute;top:50%; left:50%; margin:-170px 0 0 -165px; width: 300px} 
+.login *{font-size: 1.1em}
+.login:hover h1 {transform:rotateZ(-3deg) rotateY(-18deg) rotateX(19deg)}
+.login h1 { float:left; width: 100%; color:#EEF; text-align:center; font-size: 8.5em; padding:0 0 10px 15px; margin:0; z-index:-1; transition:.6s; transform:rotateZ(-6deg) rotateY(-20deg) rotateX(20deg); text-shadow:0 30px 8px #172741}
+.login h1::after {content:"Social TicTac Game"; font-size:.25em; margin-left:10px; display:block; color:#122038;text-shadow:1px 1px 2px #678}
+.login button { box-shadow:1px 2px 3px #172741;}
+.login a { display:inline-block; color:#172741 ; text-decoration: none; margin-left:10px}
+.login a:hover { color: #FFF}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>TicAll :: login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Simple starter for PHP web projects" />
+        <meta name="keywords" content="PHP, start, neos, project, web, programmers, developer, design" />
+        <meta property="og:title" content="Simple Starter for PHP Projects" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://phpstart.tk/" />
+        <meta property="og:image" content="http://phpstart.tk/assets/start.png" />
+        <meta property="og:site_name" content="phpstart.tk" />
+        <meta property="og:description" content="Simple starter for PHP web projects" />
+        <meta name="google-site-verification" content="nrL0ws4lb5l8PH3ovuXfx_r5in1BsZ24mRJWgqpSJ6A" />
+        <!-- <link href='http://fonts.googleapis.com/css?family=Oxygen+Mono|Oxygen|Vampiro+One' rel='stylesheet' type='text/css'> -->
+        <link rel="stylesheet" href="style/lib/normalize.css">
+        <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="style/login.css">
+        <link rel="author" href="humans.txt">
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="login">
+                <h1>Ticall</h1>
+                <form action="@URL tic" method="post">
+                    <input type="text" name="login" id="login" placeHolder="Login or e-mail" />
+                    <input type="password" name="passw" id="passw" placeHolder="Password" />
+                    <button type="submit" id="login">Login</button>
+                    <a href="@URL account">Create Your Account</a>
+                </form>
+            </div>
+        </div>
+        <script src="script/lib/prefixfree.min.js"></script>
+        <script src="script/lib/utils.js"></script>
+    </body>
+
+</html>

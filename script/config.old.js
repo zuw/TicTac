@@ -16,119 +16,110 @@ var CONFIG = {
         'timeout': "http://ticall.dev/assets/tout.mp3"
     },
 
-    gamer: {
-        'name': 'Alexandre Ottoni',
-        'image': 'http://ticall.dev/assets/u2.jpg',
-        'credits': 234,
-        'value': 20
-    },
-
-    clicked: '',
-    key: '',
-    winner: '',
-    
     tic: {
-        A1: {
-            type: 'X',
-            active: false
-        },
-        B1: {
-            type: 'O',
-            active: false
-        },
-        C1: {
-            type: 'X',
-            active: false
-        },
-        A2: {
-            type: 'O',
-            active: false
-        },
-        B2: {
-            type: 'O',
-            active: false
-        },
-        C2: {
-            type: 'X',
-            active: false
-        },
-        A3: {
-            type: 'O',
-            active: false
-        },
-        B3: {
-            type: 'X',
-            active: false
-        },
-        C3: {
-            type: 'O',
-            active: false
-        }
-    },
 
-    tics: {
         A1: {
-            type: 'X',
+            type: 2,
             active: false
         },
         B1: {
-            type: 'O',
+            type: 2,
             active: false
         },
         C1: {
-            type: 'X',
+            type: 2,
             active: false
         },
         D1: {
-            type: 'X',
+            type: 2,
             active: false
         },
+        E1: {
+            type: 2,
+            active: false
+        },
+
         A2: {
-            type: 'O',
+            type: 2,
             active: false
         },
         B2: {
-            type: 'O',
-            active: false
+            type: 2,
+            active: true
         },
         C2: {
-            type: 'X',
+            type: 2,
             active: false
         },
         D2: {
-            type: 'X',
+            type: 2,
             active: false
         },
+        E2: {
+            type: 2,
+            active: false
+        },
+
         A3: {
-            type: 'O',
+            type: 2,
             active: false
         },
         B3: {
-            type: 'X',
+            type: 2,
             active: false
         },
         C3: {
-            type: 'O',
+            type: 2,
             active: false
         },
         D3: {
-            type: 'X',
+            type: 2,
             active: false
         },
+        E3: {
+            type: 2,
+            active: false
+        },
+
         A4: {
-            type: 'O',
+            type: 2,
             active: false
         },
         B4: {
-            type: 'X',
+            type: 2,
             active: false
         },
         C4: {
-            type: 'O',
+            type: 2,
             active: false
         },
         D4: {
-            type: 'X',
+            type: 2,
+            active: false
+        },
+        E4: {
+            type: 2,
+            active: false
+        },
+
+        A5: {
+            type: 2,
+            active: false
+        },
+        B5: {
+            type: 2,
+            active: false
+        },
+        C5: {
+            type: 2,
+            active: false
+        },
+        D5: {
+            type: 2,
+            active: false
+        },
+        E5: {
+            type: 2,
             active: false
         }
     }

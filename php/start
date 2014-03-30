@@ -11,8 +11,8 @@ if (php_sapi_name() == 'cli') {
 date_default_timezone_set('America/Sao_Paulo');
 
 //Defines for CORE
-defined('PPHP')     || define('PPHP', __DIR__.'/'); 
-defined('VENDOR')   || define('VENDOR', PPHP . 'vendor/');
+defined('PPHP')       || define('PPHP', __DIR__.'/'); 
+defined('VENDOR')     || define('VENDOR', PPHP . 'vendor/');
 
 //Composer autoloader
 include VENDOR.'autoload.php';
@@ -23,17 +23,23 @@ include VENDOR.'autoload.php';
 	->includeHelpers();
 
 //Defines for template
-defined('ROOT')     || define('ROOT', dirname($_SERVER['DOCUMENT_ROOT'] . $_SERVER['SCRIPT_NAME']) . '/');
-defined('RPATH')    || define('RPATH', ((strpos(ROOT, 'phar://') === false) ? ROOT : str_replace('phar://', '', dirname(ROOT) . '/')));
+defined('ROOT')       || define('ROOT', dirname($_SERVER['DOCUMENT_ROOT'] . $_SERVER['SCRIPT_NAME']) . '/');
+defined('RPATH')      || define('RPATH', ((strpos(ROOT, 'phar://') === false) ? ROOT : str_replace('phar://', '', dirname(ROOT) . '/')));
 
 //Defines for template to url access
 $base = rtrim(str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']), ' /');
-defined('REQST')    || define('REQST', trim(str_replace($base, '', $_SERVER['REQUEST_URI']), ' /'));
-defined('URL')      || define('URL', 'http://'.$_SERVER['SERVER_NAME'].$base.'/');
+defined('REQST')      || define('REQST', trim(str_replace($base, '', $_SERVER['REQUEST_URI']), ' /'));
+defined('URL')        || define('URL', 'http://'.$_SERVER['SERVER_NAME'].$base.'/');
 
 //Configurations
 class_alias('Neos\Data\Config', 'o'); 
 o::load(PPHP.'app.ini'); //load config ini file
+
+//Others defines for template urls.
+defined('URL_IMG')    || define('URL_IMG', o::url('image'));
+defined('URL_STYLE')  || define('URL_STYLE', o::url('style'));
+defined('URL_SCRIPT') || define('URL_SCRIPT', o::url('script'));
+defined('URL_AJAX')   || define('URL_AJAX', o::url('ajax'));
 
 //Template alias
 class_alias('Neos\Html\Doc', 'View');

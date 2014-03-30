@@ -1,0 +1,64 @@
+{
+    "url": "http://ticall.dev/",
+    "assets": "http://ticall.dev/assets/",
+    "ajax": "http://ticall.dev/ajax/",
+    "sounds": {
+        "click": "http://ticall.dev/assets/fx.mp3",
+        "final": "http://ticall.dev/assets/final.mp3",
+        "tic": "http://ticall.dev/assets/tic.mp3",
+        "timeout": "http://ticall.dev/assets/tout.mp3"
+    },
+    "gamer": {
+        "id": 0,
+        "sign": "A",
+        "name": "Alexandre Ottoni",
+        "image": "http://ticall.dev/assets/u2.jpg",
+        "credits": 234,
+        "value": 20
+    },
+    "myid": 1,
+    "mykey": "baddfb7aebf33e196284544baf902d81",
+    "mysign": "B",
+    "game": 1,
+    "clicked": "",
+    "winner": "",
+    "command": "clicked",
+    "tic": {
+        "A1": {
+            "type": "X",
+            "active": true
+        },
+        "B1": {
+            "type": "X",
+            "active": false
+        },
+        "C1": {
+            "type": "X",
+            "active": false
+        },
+        "A2": {
+            "type": "X",
+            "active": false
+        },
+        "B2": {
+            "type": "X",
+            "active": false
+        },
+        "C2": {
+            "type": "X",
+            "active": false
+        },
+        "A3": {
+            "type": "X",
+            "active": false
+        },
+        "B3": {
+            "type": "X",
+            "active": false
+        },
+        "C3": {
+            "type": "X",
+            "active": false
+        }
+    }
+}

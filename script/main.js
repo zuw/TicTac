@@ -4,17 +4,17 @@
  */
 
 //simplified getElementById.
-function _(el) {
-    return document.getElementById(el);
-}
+// function _(el) {
+//     return document.getElementById(el);
+// }
 
-//instanciate abjects in global context
-var SOUND = new AUDIO.construct();
-var SERVER = new WATCH.construct();
-var CLOCK = new WATCH.wconstruct();
-var TICALL = new TICTAC.construct();
-var SPLASH = new DISPLAY.construct();
-var CONTROLLER = new CONTROLLER.construct();
+// //instanciate abjects in global context
+// var SOUND = new AUDIO.construct();
+// var SERVER = new WATCH.construct();
+// var CLOCK = new WATCH.wconstruct();
+// var TICALL = new TICTAC.construct();
+// var SPLASH = new DISPLAY.construct();
+// var Main = new CONTROLLER.Main();
 
-//Run application
-CONTROLLER.initialize();
+// //Run application
+// Main.initialize();

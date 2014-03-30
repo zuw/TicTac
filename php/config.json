@@ -1,0 +1,70 @@
+{
+    "url": "http://ticall.dev/",
+    "assets": "http://ticall.dev/assets/",
+    "ajax": "http://ticall.dev/ajax/",
+    "credits": 20,
+    "game": 1,
+    "action": {
+        "status": "clicked",
+        "card": "B2"
+    },
+    "sounds": {
+        "click": "http://ticall.dev/assets/fx.mp3",
+        "final": "http://ticall.dev/assets/final.mp3",
+        "tic": "http://ticall.dev/assets/tic.mp3",
+        "timeout": "http://ticall.dev/assets/tout.mp3"
+    },
+    "A": {
+        "id": 0,
+        "key": "baddfb7aebf33e196284544baf902d81",
+        "sign": "B",
+        "name": "Me",
+        "image": "http://ticall.dev/assets/u1.jpg",
+        "credits": 100
+    },
+    "B": {
+        "id": 0,
+        "sign": "A",
+        "name": "Alexandre Ottoni",
+        "image": "http://ticall.dev/assets/u2.jpg",
+        "credits": 234
+    },
+    "tic": {
+        "A1": {
+            "type": "X",
+            "active": true
+        },
+        "B1": {
+            "type": "X",
+            "active": false
+        },
+        "C1": {
+            "type": "X",
+            "active": false
+        },
+        "A2": {
+            "type": "X",
+            "active": false
+        },
+        "B2": {
+            "type": "X",
+            "active": false
+        },
+        "C2": {
+            "type": "X",
+            "active": false
+        },
+        "A3": {
+            "type": "X",
+            "active": false
+        },
+        "B3": {
+            "type": "X",
+            "active": false
+        },
+        "C3": {
+            "type": "X",
+            "active": false
+        }
+    }
+}

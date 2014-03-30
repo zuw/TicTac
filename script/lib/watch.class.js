@@ -9,80 +9,72 @@ var WATCH = (function() {
     var watch = {
 
         //Construct
-        construct: function(Url, Type, Data) {
+        construct: function() {
 
-            this.url = (Url) ? Url : CONFIG.ajax;
-            this.type = (Type) ? Type : 'POST';
-            this.data = (Data) ? Data : '{"teste":"este é um teste."}';
+            this.node = {};
 
-            //Upload
-            this.uploadFile = function(fileName) {
+            this.create = function(name, tickTime, ticCallback, maxTime, maxCallback) {
 
-                var file = _(fileName).files[0];
-                //alert('Name: ' + file.name + "\nSize: " + file.size + "\nType: " + file.type);
+                this.node[name] = new WATCH.timer(tickTime, ticCallback, maxTime, maxCallback);
 
-                var formdata = new FormData();
-                formdata.append(fileName, file);
-
-                var ajax = new XMLHttpRequest();
-                ajax.upload.addEventListener("progress", this.progressHandler, false);
-                ajax.addEventListener("load", this.completeHandler, false);
-                ajax.addEventListener("error", this.errorHandler, false);
-                ajax.addEventListener("abort", this.abortHandler, false);
-                ajax.open("POST", this.url);
-                ajax.send(formdata);
             },
 
-            //Data Request
-            this.ajax = function(data) {
-
-                var formdata = new FormData();
-                formdata.append("data", JSON.stringify(data));
-
-                var ajax = new XMLHttpRequest();
-                ajax.upload.addEventListener("progress", this.progressHandler, false);
-                ajax.addEventListener("load", this.completeHandler, false);
-                ajax.addEventListener("error", this.errorHandler, false);
-                ajax.addEventListener("abort", this.abortHandler, false);
-                ajax.open("POST", this.url);
-                ajax.send(formdata);
-            },
-
-            //Progresss
-            this.progressHandler = function(event) {
-                var percent = (event.loaded / event.total) * 100;
-                _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
-            },
-
-            //Complete
-            this.completeHandler = function(event) {
-                var data = false;
-                eval(event.target.responseText);
-
-                if (!data) CONTROLLER.error('nodata');
-
-                CONFIG.tic = data.tic;
-
-                //Reload cards
-                TICALL.reload();
-
-                CONTROLLER.action(data);
-
-                _("status").innerHTML = event.target.responseText;
-            },
-
-            //Error
-            this.errorHandler = function(event) {
-                _("status").innerHTML = "Upload Failed";
-            },
-
-            //Abort
-            this.abortHandler = function(event) {
-                _("status").innerHTML = "Upload Aborted";
+            this.start = function(name, newInterval) {
+                if (this.node[name]) {
+                    return this.node[name].start(newInterval);
+                } else {
+                    return new CONTROLLER.Error('Timer not exists!', 'stop');
+                }
             }
-
         }
+
+
     };
+
+
+    //Timer class
+    var timer = {
+
+        construct: function(interval, maxtime, ticCallback, maxCallback) {
+
+            this.tickCallback = tickCallback;
+            this.maxCallback = maxCallback;
+            this.interval = interval;
+            this.maxtime = maxtime;
+            this.node = null;
+            this.count = 0;
+
+            //Star [opcional = new interval] timer
+            this.start = function(newInterval) {
+                //[opcional] new interval | 3000 = 3 seconds
+                if (newInterval) this.interval = newInterval;
+
+                this.node = setInterval(function() {
+                    this.tick();
+                }, this.interval);
+            },
+
+            //Stop the time
+            this.stop = function() {
+                return window.clearInterval(this.node);
+            },
+
+            //Tick step
+            this.tick = function() {
+                if (maxtime) {
+                    this.count++;
+                    if (this.count >= this.maxtime)
+                        return this.timeout();
+                }
+                return this.callback;
+            },
+
+            //[opcional] Timeout
+            this.timeout = function() {
+                return this.maxCallback;
+            }
+        }
+    }
 
 
     var wdog = {
@@ -144,7 +136,7 @@ var WATCH = (function() {
             if (this.wcounter <= 0) {
                 window.clearInterval(WATCH.nodeTime);
                 DISPLAY.clockHide();
-                return CONTROLLER.timeOut();
+                return controllerMain.timeOut();
             }
 
             return DISPLAY.clockShow(this.wcounter, color, back);
